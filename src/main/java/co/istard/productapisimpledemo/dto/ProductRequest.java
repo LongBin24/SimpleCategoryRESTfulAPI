@@ -10,6 +10,7 @@ public record ProductRequest(
         String description,
         @NotBlank(message = "price is required")
         @Positive(message = "price must be positive")
-        Float price
+        Float price,
+        CategoryResponse category
 ) {
 }

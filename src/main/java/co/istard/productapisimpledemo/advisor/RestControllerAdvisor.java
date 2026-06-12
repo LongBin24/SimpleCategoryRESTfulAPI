@@ -12,6 +12,20 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class RestControllerAdvisor {
+
+
+
+
+    @ExceptionHandler(ResourceAlreadyExistException.class)
+    public ResponseEntity<ErrorResponse<?>>
+    hendleResourceAlreadyExistException(ResourceAlreadyExistException exception){
+        var respone = ErrorResponse.builder()
+                .message(exception.getMessage())
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.CONFLICT.value())
+                .build();
+                return new ResponseEntity<>(respone,HttpStatus.CONFLICT);
+    }
     // handle not found issue
     // ExceptionHandler(NoSuchElementException.class)
 
